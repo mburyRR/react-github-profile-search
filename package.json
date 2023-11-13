@@ -1,0 +1,52 @@
+{
+  "name": "react-github-profile-search",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint src/**/*.{ts,tsx} --quiet"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "devDependencies": {
+    "@graphql-codegen/typescript-react-apollo": "^4.1.0",
+    "@types/node": "^20.9.0",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.14",
+    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/parser": "^6.10.0",
+    "@vitejs/plugin-react": "4.1.1",
+    "eslint": "^8.53.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-css-modules": "^2.12.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
+    "prettier": "^3.0.3",
+    "sass": "1.69.5",
+    "typescript": "5.2.2",
+    "vite": "4.5.0",
+    "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-pwa": "0.16.7",
+    "vite-plugin-svgr": "^4.1.0"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.7",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/roboto": "^5.0.8",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/material": "^5.14.17",
+    "@mui/system": "^5.14.17",
+    "dotenv": "^16.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "^6.18.0"
+  }
+}
