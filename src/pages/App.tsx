@@ -12,7 +12,7 @@ const App: FC = () => {
       <Routes>
         <Route path="/" element={<SearchPage />} />
         <Route path="/favourites" element={<FavouritesPage />} />
-        <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/user/:login" element={<UserPage />} />
       </Routes>
     </S.App>
   );

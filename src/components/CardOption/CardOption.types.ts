@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { UserListItem } from '@store/types';
 export interface CardOptionProps {
-  option: any;
+  option: UserListItem;
   isAddedToFavourites: boolean;
-  onSelect: (user: any) => void;
-  onAddToFavourites: (user: any) => void;
+  onSelect: (user: UserListItem) => void;
+  onAddToFavourites: (user: UserListItem) => void;
 }

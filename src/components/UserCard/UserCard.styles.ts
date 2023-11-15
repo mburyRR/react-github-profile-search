@@ -44,6 +44,8 @@ export const CardMedia = styled(MUICardMedia)(({ theme }) => ({
 })) as OverridableComponent<CardMediaTypeMap<unknown, 'div'>>;
 
 export const CardContent = styled(MUICardContent)(() => ({
+  display: 'flex',
+  flexDirection: 'column',
   width: '100%',
   padding: 0,
 

@@ -17,10 +17,15 @@ export const FavouriteButton: FC<FavouriteButtonProps> = ({
   return (
     <S.FavouriteButton
       aria-label="toggle favourite option"
+      data-testid="favourite-button"
       isAddedToFavourites={isAddedToFavourites}
       onClick={handleSelectFavourite}
     >
-      {isAddedToFavourites ? <StarFilled /> : <StarBorderOutlined />}
+      {isAddedToFavourites ? (
+        <StarFilled data-testid="star-filled" />
+      ) : (
+        <StarBorderOutlined data-testid="star-border-outlined" />
+      )}
     </S.FavouriteButton>
   );
 };

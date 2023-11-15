@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FAVOURITE_USERS_STORAGE } from '@common/constants';
 import AppBar from '@components/AppBar';
 import CardOption from '@components/CardOption';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { UserList, UserListItem } from '@store/types';
 import { getLocalStorageItem, setLocalStorageItem } from '@utils/localStorage';
 import React, { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -12,24 +12,24 @@ import * as S from './FavouritesPage.styles';
 
 export const FavouritesPage: FC = () => {
   const navigate = useNavigate();
-  const [favouriteUsers, setFavouriteUsers] = useState<any[]>([]);
+  const [favouriteUsers, setFavouriteUsers] = useState<UserList>([]);
 
   useEffect(() => {
     const storedFavouriteUsers =
-      getLocalStorageItem<any>(FAVOURITE_USERS_STORAGE) ?? [];
+      getLocalStorageItem<UserList>(FAVOURITE_USERS_STORAGE) ?? [];
     setFavouriteUsers(storedFavouriteUsers);
   }, []);
 
-  const handleAddToFavourites = (user: any) => {
+  const handleRemoveFromFavourites = (user: UserListItem) => {
     const newFavourites = favouriteUsers.filter(
-      (key: any) => key.id !== user.id,
+      (key: UserListItem) => key.id !== user.id,
     );
     setLocalStorageItem(FAVOURITE_USERS_STORAGE, newFavourites);
     setFavouriteUsers(newFavourites);
   };
 
-  const handleSelectUser = (user: any) => {
-    navigate(`/user/${user.id}`);
+  const handleSelectUser = (user: UserListItem) => {
+    navigate(`/user/${user.login}`);
   };
 
   return (
@@ -43,19 +43,19 @@ export const FavouritesPage: FC = () => {
       </AppBar>
       <S.ContentWrapper>
         {favouriteUsers.length ? (
-          <S.Card>
-            {favouriteUsers.map((user: any) => (
+          <S.Card data-testid="favourite-users-list">
+            {favouriteUsers.map((user: UserListItem) => (
               <CardOption
                 key={user.id}
                 option={user}
                 isAddedToFavourites={true}
                 onSelect={handleSelectUser}
-                onAddToFavourites={handleAddToFavourites}
+                onAddToFavourites={handleRemoveFromFavourites}
               />
             ))}
           </S.Card>
         ) : (
-          <Stack alignItems="center">
+          <Stack data-testid="favourite-users-no-items" alignItems="center">
             <Typography variant="body2" fontSize={14}>
               No favourite users...
             </Typography>

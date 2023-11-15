@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import { User } from '@store/types';
 export interface UserCardProps {
-  user: any;
+  user: User;
   isAddedToFavourites: boolean;
   onAddToFavourites: () => void;
 }

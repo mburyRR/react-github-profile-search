@@ -1,1 +1,1 @@
-export { SearchPage as default, mockedUserList } from './SearchPage';
+export { SearchPage as default } from './SearchPage';

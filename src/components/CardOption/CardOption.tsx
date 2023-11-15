@@ -23,7 +23,7 @@ export const CardOption: FC<CardOptionProps> = ({
 
   return (
     <>
-      <S.Option onClick={handleSelectUser}>
+      <S.Option data-testid="card-option" onClick={handleSelectUser}>
         <Avatar alt="Avatar" src={option.avatarUrl} />
         <S.CardContent>
           <Typography component="div" variant="body2" fontSize={14}>

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import FavouriteButton from '@components/FavouriteButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -21,13 +20,19 @@ export const UserCard: FC<UserCardProps> = ({
         <S.Name component="div" variant="h5" fontSize={28}>
           {user.name}
         </S.Name>
-        <S.Email href={`mailto:${user.email}`} variant="body2">
-          {user.email}
+        <S.Email href={user.url} variant="body2">
+          {`@${user.login}`}
         </S.Email>
         <S.Bio component="div" variant="body2">
           {user.bio}
         </S.Bio>
-        <Stack flexDirection="row" width="100%" gap={3.5}>
+        <Stack
+          flexDirection="row"
+          width="100%"
+          gap={3.5}
+          flexGrow={1}
+          alignItems="flex-end"
+        >
           <S.Kpi>
             <Typography component="div" variant="body1" fontSize={28}>
               {user.followers}
@@ -46,7 +51,7 @@ export const UserCard: FC<UserCardProps> = ({
           </S.MiddleKpi>
           <S.Kpi>
             <Typography component="div" variant="body1" fontSize={28}>
-              {user.totalRepos}
+              {user.publicRepos}
             </Typography>
             <S.KpiLabel component="div" variant="overline" fontSize={10}>
               repos

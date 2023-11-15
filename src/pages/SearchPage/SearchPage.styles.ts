@@ -20,23 +20,36 @@ export const InputBase = styled(MUIInputBase)(({ theme }) => ({
 export const Card = styled(MUICard)(({ theme }) => ({
   display: 'flex',
   boxShadow: theme.shadows[2],
-  padding: theme.spacing(1.75, 0),
+  padding: theme.spacing(0, 0),
   marginTop: theme.spacing(3),
   width: '100%',
-
-  '& ul': {
-    width: '100%',
-    padding: 0,
-
-    '& .list-divider:last-of-type': {
-      display: 'none',
-    },
-  },
 
   [theme.breakpoints.up('sm')]: {
     width: theme.spacing(70),
   },
   [theme.breakpoints.up('md')]: {
     width: theme.spacing(75),
+  },
+}));
+
+export const List = styled('ul')(({ theme }) => ({
+  width: '100%',
+  height: theme.spacing(40),
+
+  '& .infinite-scroll-component__outerdiv': {
+    width: '100%',
+
+    '& .infinite-scroll-component': {
+      width: '100%',
+      padding: 0,
+
+      '& .list-divider:last-of-type': {
+        display: 'none',
+      },
+    },
+  },
+
+  '&::-webkit-scrollbar': {
+    display: 'none',
   },
 }));

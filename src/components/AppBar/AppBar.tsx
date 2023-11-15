@@ -33,15 +33,16 @@ export const AppBar: FC<AppBarProps> = ({
         <S.Search>
           {hasSearchField ? (
             <S.IconWrapper disablePointerEvents>
-              <SearchIcon />
+              <SearchIcon data-testid="search-icon" />
             </S.IconWrapper>
           ) : (
             <S.IconWrapper>
               <S.BackButton
                 aria-label="Back to homepage"
+                data-testid="back-button"
                 onClick={handleBackToHomepage}
               >
-                <ArrowBackIcon />
+                <ArrowBackIcon data-testid="back-button-icon" />
               </S.BackButton>
             </S.IconWrapper>
           )}

@@ -1,8 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FAVOURITE_USERS_STORAGE } from '@common/constants';
 import AppBar from '@components/AppBar';
 import UserCard from '@components/UserCard';
-import { mockedUserList } from '@pages/SearchPage';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import useGithubContext from '@store/GithubContext';
+import { fetchGithubUser } from '@store/services';
+import { UserList, UserListItem } from '@store/types';
 import { getLocalStorageItem, setLocalStorageItem } from '@utils/localStorage';
 import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -10,55 +13,77 @@ import { useParams } from 'react-router-dom';
 import * as S from './UserPage.styles';
 
 export const UserPage: FC = () => {
-  const { id } = useParams();
-  const [favouriteUsers, setFavouriteUsers] = useState<any[]>([]);
+  const { login } = useParams();
+  const [favouriteUsers, setFavouriteUsers] = useState<UserList>([]);
+  const { setUsers, setError, users, error } = useGithubContext();
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await fetchGithubUser(login);
+        setUsers(data);
+      } catch (error) {
+        if (error instanceof Error) setError(error.message);
+        else setError(String(error));
+      }
+    };
+    if (!users.find((u) => u.login === login)) {
+      fetchUser();
+    }
+  }, []);
 
   useEffect(() => {
     const storedFavouriteUsers =
-      getLocalStorageItem<any>(FAVOURITE_USERS_STORAGE) ?? [];
+      getLocalStorageItem<UserList>(FAVOURITE_USERS_STORAGE) ?? [];
     setFavouriteUsers(storedFavouriteUsers);
   }, []);
 
-  const mockedUser = mockedUserList.find((user) => user.id === Number(id));
+  const user = users.find((u) => u.login === login);
   const isAddedToFavourites = favouriteUsers.some(
-    (user: any) => user.id === Number(id),
+    (favouriteUser: UserListItem) => favouriteUser.login === login,
   );
-
-  console.log(isAddedToFavourites);
 
   const handleAddToFavourites = () => {
     if (isAddedToFavourites) {
       const newFavourites = favouriteUsers.filter(
-        (key: any) => key.id !== mockedUser?.id,
+        (favouriteUser: UserListItem) => favouriteUser.login !== user?.login,
       );
 
       setLocalStorageItem(FAVOURITE_USERS_STORAGE, newFavourites);
       setFavouriteUsers(newFavourites);
     } else {
-      const newFavourites = [...favouriteUsers, mockedUser];
+      const newFavourites = [...favouriteUsers, user!];
 
       setLocalStorageItem(FAVOURITE_USERS_STORAGE, newFavourites);
       setFavouriteUsers(newFavourites);
     }
   };
 
-  if (!mockedUser) return null;
+  if (!user) return null;
 
   return (
     <>
       <AppBar isAddedToFavourites={isAddedToFavourites}>
         <S.InputBase
           fullWidth
-          value={`@${mockedUser.login}`}
+          value={`@${user.login}`}
           inputProps={{ 'aria-label': 'favourites' }}
         />
       </AppBar>
       <S.ContentWrapper>
-        <UserCard
-          user={mockedUser}
-          isAddedToFavourites={isAddedToFavourites}
-          onAddToFavourites={handleAddToFavourites}
-        />
+        {error ? (
+          <Stack data-testid="error-message" mt={3} alignItems="center">
+            <Typography variant="body2" fontSize={14}>
+              Error fetching user data...
+            </Typography>
+          </Stack>
+        ) : (
+          <UserCard
+            user={user}
+            isAddedToFavourites={isAddedToFavourites}
+            onAddToFavourites={handleAddToFavourites}
+          />
+        )}
       </S.ContentWrapper>
     </>
   );

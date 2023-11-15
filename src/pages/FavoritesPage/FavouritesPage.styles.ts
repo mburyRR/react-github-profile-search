@@ -5,14 +5,14 @@ import { styled } from '@theme/styled';
 
 export const ContentWrapper = styled(MUIStack)(({ theme }) => ({
   padding: theme.spacing(1.75, 0),
-  maxWidth: '100%',
+  minWidth: 'fit-content',
 }));
 
 export const Card = styled(MUICard)(({ theme }) => ({
   display: 'flex',
   boxShadow: theme.shadows[2],
   padding: theme.spacing(1.75, 0),
-  width: '100%',
+  width: '92vw',
   flexDirection: 'column',
 
   '& .list-divider:last-of-type': {
