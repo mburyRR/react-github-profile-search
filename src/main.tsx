@@ -2,7 +2,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ThemeProvider from '@mui/material/styles/ThemeProvider';
 import App from '@pages/App';
 import { defaultTheme } from '@theme/defaultTheme';
-import React from 'react';
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { registerSW } from 'virtual:pwa-register';
@@ -18,7 +18,7 @@ const updateSW = registerSW({
 });
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
+  <StrictMode>
     <ThemeProvider theme={defaultTheme}>
       <GithubProvider>
         <BrowserRouter>
@@ -27,5 +27,5 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
         </BrowserRouter>
       </GithubProvider>
     </ThemeProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 );

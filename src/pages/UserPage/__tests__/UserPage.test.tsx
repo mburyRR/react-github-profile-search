@@ -1,7 +1,6 @@
 import { UserListFactoryItem } from '@store/__fixtures__/githubData';
 import { UserList } from '@store/types';
 import { act, render, waitFor } from '@testing-library/react';
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { UserPage } from '../UserPage';

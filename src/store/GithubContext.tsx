@@ -1,4 +1,9 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useReducer,
+} from 'react';
 
 import githubReducer from './githubReducer';
 import { GithubActionTypes, GithubState, UserListRes, UserRes } from './types';
@@ -17,9 +22,7 @@ export const initialState: GithubState = {
 
 export const GithubContext = createContext<GithubState>(initialState);
 
-export const GithubProvider = ({
-  children,
-}: React.PropsWithChildren<object>) => {
+export const GithubProvider = ({ children }: PropsWithChildren<object>) => {
   const [state, dispatch] = useReducer(githubReducer, initialState);
 
   const setUserList = (userList: UserListRes) => {

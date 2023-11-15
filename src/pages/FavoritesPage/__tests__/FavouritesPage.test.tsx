@@ -2,7 +2,6 @@
 import { UserListFactoryItem } from '@store/__fixtures__/githubData';
 import { UserList } from '@store/types';
 import { render, screen } from '@testing-library/react';
-import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { FavouritesPage } from '../FavouritesPage';

@@ -1,7 +1,7 @@
 import FavouriteButton from '@components/FavouriteButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import * as S from './UserCard.styles';
 import { UserCardProps } from './UserCard.types';

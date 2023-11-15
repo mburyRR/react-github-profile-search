@@ -1,7 +1,6 @@
 import { UserListFactoryItem } from '@store/__fixtures__/githubData';
 import { UserListItem } from '@store/types';
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
 
 import { CardOption } from '../CardOption';
 import { CardOptionProps } from '../CardOption.types';

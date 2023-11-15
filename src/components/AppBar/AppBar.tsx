@@ -2,7 +2,7 @@ import ArrowBackIcon from '@assets/arrow-back-filled.svg?react';
 import SearchIcon from '@assets/search-filled.svg?react';
 import FavouriteButton from '@components/FavouriteButton';
 import Stack from '@mui/material/Stack';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as S from './AppBar.styles';

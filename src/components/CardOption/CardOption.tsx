@@ -2,7 +2,7 @@ import FavouriteButton from '@components/FavouriteButton';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/system/Stack';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import * as S from './CardOption.styles';
 import { CardOptionProps } from './CardOption.types';

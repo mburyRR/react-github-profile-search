@@ -1,36 +1,16 @@
-import { FAVOURITE_USERS_STORAGE } from '@common/constants';
 import AppBar from '@components/AppBar';
 import CardOption from '@components/CardOption';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { UserList, UserListItem } from '@store/types';
-import { getLocalStorageItem, setLocalStorageItem } from '@utils/localStorage';
-import React, { FC, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { UserListItem } from '@store/types';
+import { FC } from 'react';
 
 import * as S from './FavouritesPage.styles';
+import { useFavouritesPage } from './hooks/useFavouritesPage';
 
 export const FavouritesPage: FC = () => {
-  const navigate = useNavigate();
-  const [favouriteUsers, setFavouriteUsers] = useState<UserList>([]);
-
-  useEffect(() => {
-    const storedFavouriteUsers =
-      getLocalStorageItem<UserList>(FAVOURITE_USERS_STORAGE) ?? [];
-    setFavouriteUsers(storedFavouriteUsers);
-  }, []);
-
-  const handleRemoveFromFavourites = (user: UserListItem) => {
-    const newFavourites = favouriteUsers.filter(
-      (key: UserListItem) => key.id !== user.id,
-    );
-    setLocalStorageItem(FAVOURITE_USERS_STORAGE, newFavourites);
-    setFavouriteUsers(newFavourites);
-  };
-
-  const handleSelectUser = (user: UserListItem) => {
-    navigate(`/user/${user.login}`);
-  };
+  const { favouriteUsers, handleRemoveFromFavourites, handleSelectUser } =
+    useFavouritesPage();
 
   return (
     <>

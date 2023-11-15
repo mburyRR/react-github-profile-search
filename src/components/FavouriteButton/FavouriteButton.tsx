@@ -1,6 +1,6 @@
 import StarBorderOutlined from '@assets/star-border-outlined.svg?react';
 import StarFilled from '@assets/star-filled.svg?react';
-import React, { FC, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
 
 import * as S from './FavouriteButton.styles';
 import { FavouriteButtonProps } from './FavouriteButton.types';
