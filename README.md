@@ -1,6 +1,6 @@
 # React GitHub Profile Search (PWA)
 
-## React + Vite + GraphQL + GitHub API
+## React + Vite + GitHub API + Context API + Infinite Scroll
 
 ---------
 
